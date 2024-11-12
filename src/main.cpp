@@ -7,32 +7,12 @@
 
 #include "ShaderProgram.h"
 
-struct Vector2 {
-    float x;
-    float y;
-};
 
 float vertices[6] = {
     0.5f, 0.5f,
     0.5f, -0.5f,
     0.0f, 0.5f
 };
-
-static const char* vertexShaderCode =
-"#version 330\n"
-"layout (location = 0) in vec2 position;\n"
-"void main()\n"
-"{\n"
-"gl_Position = vec4(position, 0.0f, 1.0f);\n"
-"}\n";
-
-static const char* fragmentShaderCode =
-"#version 330\n"
-"out vec4 color;\n"
-"void main()\n"
-"{\n"
-"color = vec4(1.0f, 0.0f, 0.0f, 1.0f);\n"
-"}\n";
 
 int main()
 {
@@ -64,12 +44,6 @@ int main()
         printf("Error with GLEW");
         return -1;
     }
-
-    /*std::string vertexFileContent = ReadResourceFileToStr("resources/shaders/vertex.shader");
-    const char* vertexCodePtr = vertexFileContent.c_str();
-
-    std::string fragmentFileContent = ReadResourceFileToStr("resources/shaders/fragment.shader");
-    const char* fragmentCodePtr = fragmentFileContent.c_str();*/
 
     unsigned int VAO, VBO;
     glGenVertexArrays(1, &VAO);
