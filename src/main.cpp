@@ -8,10 +8,16 @@
 #include "ShaderProgram.h"
 
 
-float vertices[6] = {
-    0.5f, 0.5f,
-    0.5f, -0.5f,
-    0.0f, 0.5f
+float vertices[8] = {
+    -0.5f, -0.5f, // bottom left
+    -0.5f, -0.0f, // top left
+    0.0f, 0.0f, // top right
+    0.0f, -0.5f, // bottom right
+};
+
+unsigned int indices[6] = {
+    0, 1, 2,
+    0, 3, 2
 };
 
 int main()
@@ -45,18 +51,24 @@ int main()
         return -1;
     }
 
-    unsigned int VAO, VBO;
+    unsigned int VAO, VBO, EBO;
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
+    glGenBuffers(1, &EBO);
 
     glBindVertexArray(VAO);
+
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), &vertices, GL_STATIC_DRAW);
-    glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, (void*)0);
+    glEnableVertexAttribArray(0);
 
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), &indices, GL_STATIC_DRAW);
+
+    glBindVertexArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
     ShaderProgram shaderProgram = ShaderProgram(
         "resources/shaders/vertex.shader",
@@ -67,9 +79,10 @@ int main()
     while (!glfwWindowShouldClose(window))
     {
         /* Render here */
+        glBindVertexArray(VAO); // this is needed here - why? 
         glClear(GL_COLOR_BUFFER_BIT);
 
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawElements(GL_TRIANGLES, sizeof(indices), GL_UNSIGNED_INT, (void*)0);
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
