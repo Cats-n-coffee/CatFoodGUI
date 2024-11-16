@@ -9,6 +9,8 @@ class ShaderProgram
 public:
 	ShaderProgram(const std::string& vertexFilePath, const std::string& fragmentFilePath);
 	~ShaderProgram();
+
+	inline const unsigned int getProgramId() { return m_shaderProgram; }
 private:
 	unsigned int AddShader(const std::string& filePath, GLenum type);
 

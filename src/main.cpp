@@ -4,6 +4,9 @@
 #include <string>
 #include <glew.h>
 #include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/transform.hpp>
 
 #include "ShaderProgram.h"
 
@@ -20,6 +23,21 @@ unsigned int indices[6] = {
     0, 3, 2
 };
 
+// https://gamedev.stackexchange.com/questions/174463/which-is-a-better-way-for-moving-3d-objects-in-opengl
+
+int width = 640;
+int height = 480;
+
+glm::vec3 translateRect = glm::vec3(0.1f);
+
+static void keyEvents(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+    if (key == GLFW_KEY_RIGHT && action == GLFW_PRESS) {
+        translateRect.x -= 0.1f;
+        std::cout << "prssed " << translateRect.x << std::endl;
+    }
+}
+
 int main()
 {
     GLFWwindow* window;
@@ -32,7 +50,7 @@ int main()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
+    window = glfwCreateWindow(width, height, "Hello World", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -75,6 +93,20 @@ int main()
         "resources/shaders/fragment.shader"
     );
 
+    // Transformations
+    glm::mat4 viewMatrix = glm::lookAt( // Camera, world moves around it
+        glm::vec3(1.0f, 1.0f, -1.0f), glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f)
+    );
+    glm::mat4 projectionMatrix = glm::perspective( // Gives the perspective using the z coords
+        glm::radians(45.0f), (float)width / (float)height, 0.1f, 100.0f
+    );
+
+    // User input
+    glfwSetKeyCallback(window, keyEvents);
+
+    // Get the uniform location in the program
+    unsigned int mvpLocation = glGetUniformLocation(shaderProgram.getProgramId(), "modelViewProjection");
+
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
@@ -82,6 +114,13 @@ int main()
         glBindVertexArray(VAO); // this is needed here - why? 
         glClear(GL_COLOR_BUFFER_BIT);
 
+        // Update the MVP in shader
+        glm::mat4 modelMatrix = glm::translate(glm::mat4(1.0f), translateRect); // Should be scale, rotation, translation
+        glm::mat4 modelViewProjection = projectionMatrix * viewMatrix * modelMatrix;
+
+        glUniformMatrix4fv(mvpLocation, 1, GL_FALSE, &modelViewProjection[0][0]);
+
+        // Draw
         glDrawElements(GL_TRIANGLES, sizeof(indices), GL_UNSIGNED_INT, (void*)0);
 
         /* Swap front and back buffers */
