@@ -95,10 +95,13 @@ int main()
 
     // Transformations
     glm::mat4 viewMatrix = glm::lookAt( // Camera, world moves around it
-        glm::vec3(1.0f, 1.0f, -1.0f), glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f)
+        glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f)
     );
-    glm::mat4 projectionMatrix = glm::perspective( // Gives the perspective using the z coords
-        glm::radians(45.0f), (float)width / (float)height, 0.1f, 100.0f
+    //glm::mat4 projectionMatrix = glm::perspective( // Gives the perspective using the z coords
+    //    glm::radians(45.0f), (float)width / (float)height, 0.1f, 100.0f
+    //);
+    glm::mat4 orthographicProjection = glm::ortho(
+       -2.0f, 2.0f, -2.0f, 2.0f, 0.1f, 100.0f
     );
 
     // User input
@@ -116,7 +119,7 @@ int main()
 
         // Update the MVP in shader
         glm::mat4 modelMatrix = glm::translate(glm::mat4(1.0f), translateRect); // Should be scale, rotation, translation
-        glm::mat4 modelViewProjection = projectionMatrix * viewMatrix * modelMatrix;
+        glm::mat4 modelViewProjection = orthographicProjection * viewMatrix * modelMatrix;
 
         glUniformMatrix4fv(mvpLocation, 1, GL_FALSE, &modelViewProjection[0][0]);
 
