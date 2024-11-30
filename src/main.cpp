@@ -11,16 +11,25 @@
 #include "ShaderProgram.h"
 
 
-float vertices[8] = {
-    -0.5f, -0.5f, // bottom left
-    -0.5f, -0.0f, // top left
-    0.0f, 0.0f, // top right
-    0.0f, -0.5f, // bottom right
+float vertices[24] = {
+    -0.5f, -0.5f, 0.0f, // front - bottom left
+    0.0f, -0.5f, 0.0f, // front - bottom right
+    0.0f, 0.0f, 0.0f, // front - top right
+    -0.5f, -0.0f, 0.0f,// front - top left
+    
+    -0.5f, -0.5f, -0.2f, // back - bottom left
+    0.0f, -0.5f, -0.2f, // back - bottom right
+    0.0f, 0.0f, -0.2f, // back - top right
+    -0.5f, -0.0f, -0.2f,// back - top left
 };
 
-unsigned int indices[6] = {
-    0, 1, 2,
-    0, 3, 2
+unsigned int indices[36] = {
+    0, 1, 2, 0, 2, 3, // front face
+    4, 0, 3, 4, 7, 3, // left face
+    4, 5, 6, 4, 7, 6, // back face
+    1, 5, 6, 1, 2, 6, // right face
+    2, 3, 6, 3, 7, 6, // top face
+    0, 1, 5, 1, 4, 5, // bottom face
 };
 
 // https://gamedev.stackexchange.com/questions/174463/which-is-a-better-way-for-moving-3d-objects-in-opengl
@@ -28,11 +37,15 @@ unsigned int indices[6] = {
 int width = 640;
 int height = 480;
 
-glm::vec3 translateRect = glm::vec3(0.1f);
+glm::vec3 translateRect = glm::vec3(0.0f, 0.0f, 0.0f);
 
 static void keyEvents(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
     if (key == GLFW_KEY_RIGHT && action == GLFW_PRESS) {
+        translateRect.x += 0.1f;
+        std::cout << "prssed " << translateRect.x << std::endl;
+    }
+    if (key == GLFW_KEY_LEFT && action == GLFW_PRESS) {
         translateRect.x -= 0.1f;
         std::cout << "prssed " << translateRect.x << std::endl;
     }
@@ -59,6 +72,8 @@ int main()
 
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
+    glfwSwapInterval(1); // vsync
+    glEnable(GL_DEPTH_TEST);
 
     // GLEW
     glewExperimental = GL_TRUE;
@@ -78,7 +93,7 @@ int main()
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), &vertices, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
     glEnableVertexAttribArray(0);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
@@ -94,14 +109,8 @@ int main()
     );
 
     // Transformations
-    glm::mat4 viewMatrix = glm::lookAt( // Camera, world moves around it
-        glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f)
-    );
-    //glm::mat4 projectionMatrix = glm::perspective( // Gives the perspective using the z coords
-    //    glm::radians(45.0f), (float)width / (float)height, 0.1f, 100.0f
-    //);
     glm::mat4 orthographicProjection = glm::ortho(
-       -2.0f, 2.0f, -2.0f, 2.0f, 0.1f, 100.0f
+       -1.0f, 1.0f, -1.0f, 1.0f, 0.1f, 100.0f
     );
 
     // User input
@@ -115,11 +124,11 @@ int main()
     {
         /* Render here */
         glBindVertexArray(VAO); // this is needed here - why? 
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         // Update the MVP in shader
         glm::mat4 modelMatrix = glm::translate(glm::mat4(1.0f), translateRect); // Should be scale, rotation, translation
-        glm::mat4 modelViewProjection = orthographicProjection * viewMatrix * modelMatrix;
+        glm::mat4 modelViewProjection = orthographicProjection * modelMatrix;
 
         glUniformMatrix4fv(mvpLocation, 1, GL_FALSE, &modelViewProjection[0][0]);
 
