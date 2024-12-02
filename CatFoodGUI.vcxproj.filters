@@ -16,6 +16,9 @@
     <ClCompile Include="src\ShaderProgram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\resourceProcessing\TextureLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\vertex.shader" />
@@ -26,5 +29,10 @@
     <ClInclude Include="src\fileParserResource.h" />
     <ClInclude Include="src\resourceProcessing\FileParser.h" />
     <ClInclude Include="src\ShaderProgram.h" />
+    <ClInclude Include="src\resourceProcessing\TextureLoader.h" />
+    <ClInclude Include="src\vendors\stb_image.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\images\CatSprite256.png" />
   </ItemGroup>
 </Project>

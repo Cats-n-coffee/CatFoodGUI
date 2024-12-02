@@ -13,9 +13,10 @@ ShaderProgram::ShaderProgram(const std::string& vertexFilePath, const std::strin
 	glLinkProgram(m_shaderProgram);
 	glUseProgram(m_shaderProgram);
 
-	// TODO: move the line below
+	// TODO: attrib locations need to be passed in method prob, so we can reuse this class
 	// ensures the "(location = 0)" gets bound to its "position" name
-	glBindAttribLocation(m_shaderProgram, 0, "position");
+	glBindAttribLocation(m_shaderProgram, 0, "aPosition");
+	glBindAttribLocation(m_shaderProgram, 1, "aTexCoord");
 }
 
 ShaderProgram::~ShaderProgram()

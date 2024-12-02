@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\resourceProcessing\FileParser.cpp" />
+    <ClCompile Include="src\resourceProcessing\TextureLoader.cpp" />
     <ClCompile Include="src\ShaderProgram.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -155,7 +156,12 @@
     <ClInclude Include="src\fileParserResource.cpp" />
     <ClInclude Include="src\fileParserResource.h" />
     <ClInclude Include="src\resourceProcessing\FileParser.h" />
+    <ClInclude Include="src\resourceProcessing\TextureLoader.h" />
     <ClInclude Include="src\ShaderProgram.h" />
+    <ClInclude Include="src\vendors\stb_image.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\images\CatSprite256.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
