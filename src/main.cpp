@@ -14,64 +14,56 @@
 
 
 float vertices[180] = { // total 180
+    //      positions               UV
     // front - triangle 1
-    -0.25f, -0.25f, -0.1f, 0.5f, 0.0f, // front - bottom left
-    0.25f, -0.25f, -0.1f, 1.0f, 0.0f,// front - bottom right
-    0.25f, 0.25f, -0.1f, 1.0f, 0.5f, // front - top right
+    -0.25f, -0.25f, 0.25f,      0.5f, 0.0f, // front - bottom left
+    0.25f, -0.25f, 0.25f,       1.0f, 0.0f, // front - bottom right
+    0.25f, 0.25f, 0.25f,        1.0f, 0.5f, // front - top right
     // front - triangle 2
-    -0.25f, -0.25f, -0.1f, 0.5f, 0.0f, // front - bottom left
-    0.25f, 0.25f, -0.1f, 1.0f, 0.5f,// front - top right
-    -0.25f, 0.25f, -0.1f, 0.5f, 0.5f,// front - top left
+    -0.25f, -0.25f, 0.25f,      0.5f, 0.0f, // front - bottom left
+    0.25f, 0.25f, 0.25f,        1.0f, 0.5f, // front - top right
+    -0.25f, 0.25f, 0.25f,       0.5f, 0.5f, // front - top left
     // left - triangle 1
-    -0.25f, -0.25f, -0.6f, 0.5f, 0.5f, // left - bottom back
-    -0.25f, -0.25f, -0.1f, 1.0f, 0.5f, // left - bottom front
-    -0.25f, 0.25f, -0.1f, 1.0f, 1.0f, // left - top front
+    -0.25f, -0.25f, -0.25f,      0.5f, 0.5f, // left - bottom back
+    -0.25f, -0.25f, 0.25f,      1.0f, 0.5f, // left - bottom front
+    -0.25f, 0.25f, 0.25f,       1.0f, 1.0f, // left - top front
     // left - triangle 2
-    -0.25f, -0.25f, -0.6f, 0.5f, 0.5f, // left - bottom back
-    -0.25f, 0.25f, -0.6f, 0.5f, 1.0f, // left - top back
-    -0.25f, 0.25f, -0.1f, 1.0f, 1.0f, // left - top front
+    -0.25f, -0.25f, -0.25f,      0.5f, 0.5f, // left - bottom back
+    -0.25f, 0.25f, -0.25f,       0.5f, 1.0f, // left - top back
+    -0.25f, 0.25f, 0.25f,       1.0f, 1.0f, // left - top front
     // back - triangle 1
-    -0.25f, -0.25f, -0.6f, 0.0f, 0.5f, // back - bottom left
-    0.25f, -0.25f, -0.6f, 0.5f, 0.5f, // back - bottom right
-    0.25f, 0.25f, -0.6f, 0.5f, 1.0f, // back - top right
+    -0.25f, -0.25f, -0.25f,      0.0f, 0.5f, // back - bottom left
+    0.25f, -0.25f, -0.25f,       0.5f, 0.5f, // back - bottom right
+    0.25f, 0.25f, -0.25f,        0.5f, 1.0f, // back - top right
     // back - triangle 2
-    0.25f, 0.25f, -0.6f, 0.5f, 1.0f, // back - top right
-    -0.25f, 0.25f, -0.6f, 0.0f, 1.0f, // back - top left
-    -0.25f, -0.25f, -0.6f, 0.0f, 0.5f, // back - bottom left
+    0.25f, 0.25f, -0.25f,        0.5f, 1.0f, // back - top right
+    -0.25f, 0.25f, -0.25f,       0.0f, 1.0f, // back - top left
+    -0.25f, -0.25f, -0.25f,      0.0f, 0.5f, // back - bottom left
     // right - triangle 1
-    0.25f, -0.25f, -0.6f, 0.5f, 0.0f, // right - bottom back
-    0.25f, 0.25f, -0.6f, 0.5f, 0.5f, // right - top back
-    0.25f, 0.25f, -0.1f, 0.0f, 0.5f, // right - top front
+    0.25f, -0.25f, -0.25f,       0.5f, 0.0f, // right - bottom back
+    0.25f, 0.25f, -0.25f,        0.5f, 0.5f, // right - top back
+    0.25f, 0.25f, 0.25f,        0.0f, 0.5f, // right - top front
     // right - triangle 2
-    0.25f, 0.25f, -0.1f, 0.0f, 0.5f, // right - top front
-    0.25f, -0.25f, -0.1f, 0.0f, 0.0f, // right - bottom front
-    0.25f, -0.25f, -0.6f, 0.5f, 0.0f, // right - bottom back
+    0.25f, 0.25f, 0.25f,        0.0f, 0.5f, // right - top front
+    0.25f, -0.25f, 0.25f,       0.0f, 0.0f, // right - bottom front
+    0.25f, -0.25f, -0.25f,       0.5f, 0.0f, // right - bottom back
     // top - triangle 1
-    -0.25f, 0.25f, -0.1f, 0.0f, 0.0f, // front - top left
-    0.25f, 0.25f, -0.1f, 1.0f, 0.0f, // front - top right
-    0.25f, 0.25f, -0.6f, 1.0f, 1.0f, // back - top right
+    -0.25f, 0.25f, 0.25f,       0.0f, 0.0f, // front - top left
+    0.25f, 0.25f, 0.25f,        1.0f, 0.0f, // front - top right
+    0.25f, 0.25f, -0.25f,        1.0f, 1.0f, // back - top right
     // top - triangle 2
-    0.25f, 0.25f, -0.6f, 1.0f, 1.0f, // back - top right
-    -0.25f, 0.25f, -0.6f, 0.0f, 1.0f, // back - top left
-    -0.25f, 0.25f, -0.1f, 0.0f, 0.0f, // front - top left
+    0.25f, 0.25f, -0.25f,        1.0f, 1.0f, // back - top right
+    -0.25f, 0.25f, -0.25f,       0.0f, 1.0f, // back - top left
+    -0.25f, 0.25f, 0.25f,       0.0f, 0.0f, // front - top left
     // bottom - triangle 1
-    -0.25f, -0.25f, -0.1f, 0.0f, 0.0f, // front - bottom left
-    0.25f, -0.25f, -0.1f, 1.0f, 0.0f, // front - bottom right
-    0.25f, -0.25f, -0.6f, 1.0f, 1.0f, // back - bottom right
+    -0.25f, -0.25f, 0.25f,      0.0f, 0.0f, // front - bottom left
+    0.25f, -0.25f, 0.25f,       1.0f, 0.0f, // front - bottom right
+    0.25f, -0.25f, -0.25f,       1.0f, 1.0f, // back - bottom right
     // bottom - triangle 2
-    0.25f, -0.25f, -0.6f, 1.0f, 1.0f, // back - bottom right
-    -0.25f, -0.25f, -0.6f, 0.0f, 1.0f, // back - bottom left
-    -0.25f, -0.25f, -0.1f, 0.0f, 0.0f, // front - bottom left
+    0.25f, -0.25f, -0.25f,       1.0f, 1.0f, // back - bottom right
+    -0.25f, -0.25f, -0.25f,      0.0f, 1.0f, // back - bottom left
+    -0.25f, -0.25f, 0.25f,      0.0f, 0.0f, // front - bottom left
 };
-
-//unsigned int indices[36] = {
-//    0, 1, 2, 0, 2, 3, // front face
-//    4, 0, 3, 4, 7, 3, // left face
-//    4, 5, 6, 4, 7, 6, // back face
-//    1, 5, 6, 1, 2, 6, // right face
-//    2, 3, 6, 3, 7, 6, // top face
-//    0, 1, 5, 1, 4, 5, // bottom face
-//};
 
 // https://gamedev.stackexchange.com/questions/174463/which-is-a-better-way-for-moving-3d-objects-in-opengl
 
@@ -180,7 +172,6 @@ int main()
     unsigned int VAO, VBO;
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
-    // glGenBuffers(1, &EBO);
 
     glBindVertexArray(VAO);
 
@@ -193,12 +184,8 @@ int main()
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
 
-    // glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    // glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), &indices, GL_STATIC_DRAW);
-
     glBindVertexArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
-    // glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
     ShaderProgram shaderProgram = ShaderProgram(
         "resources/shaders/vertex.shader",
@@ -228,16 +215,11 @@ int main()
         glm::mat4 rotation = glm::rotate(glm::radians(rotateDegrees), glm::vec3(0.0f, 1.0f, 0.0f));
         glm::mat4 translation = glm::translate(glm::mat4(1.0f), translateRect);
         glm::mat4 modelMatrix = translation * rotation; // Should be scale, rotation, translation
-        // glm::mat4 modelMatrix = glm::mat4(1.0f);
-        /*glm::mat4 modelMatrix = glm::mat4(1.0f);
-        modelMatrix = glm::rotate(modelMatrix, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-        glm::mat4 modelViewProjection = orthographicProjection * modelMatrix;*/
-        glm::mat4 modelViewProjection = glm::mat4(1.0f) * modelMatrix;
+        glm::mat4 modelViewProjection = orthographicProjection * modelMatrix;
 
         glUniformMatrix4fv(mvpLocation, 1, GL_FALSE, &modelViewProjection[0][0]);
 
         // Draw
-        // glDrawElements(GL_TRIANGLES, sizeof(indices), GL_UNSIGNED_INT, (void*)0);
         glDrawArrays(GL_TRIANGLES, 0, 36);
 
         /* Swap front and back buffers */
