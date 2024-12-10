@@ -12,6 +12,8 @@
 
 #include "ShaderProgram.h"
 
+int width = 640;
+int height = 480;
 
 float vertices[180] = { // total 180
     //      positions               UV
@@ -67,45 +69,50 @@ float vertices[180] = { // total 180
 
 // https://gamedev.stackexchange.com/questions/174463/which-is-a-better-way-for-moving-3d-objects-in-opengl
 
-int width = 640;
-int height = 480;
-
 glm::vec3 translateRect = glm::vec3(0.0f, 0.0f, 0.0f);
 float rotateDegrees = 0.0f;
 
+short playerDirection = 0;
+
 static void keyEvents(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-    if (key == GLFW_KEY_RIGHT && action == GLFW_PRESS) {
+    if (key == GLFW_KEY_RIGHT && action == GLFW_PRESS) // TODO: need viewport bounds
+    {
+        if (playerDirection != 3)
+        {
+            rotateDegrees = 270.0f;
+            playerDirection = 3;
+        }
         translateRect.x += 0.1f;
         std::cout << "prssed " << translateRect.x << std::endl;
     }
-    if (key == GLFW_KEY_LEFT && action == GLFW_PRESS) {
+    if (key == GLFW_KEY_LEFT && action == GLFW_PRESS) // need viewport bounds
+    {
+        if (playerDirection != 1)
+        {
+            rotateDegrees = 90.0f;
+            playerDirection = 1;
+        }
         translateRect.x -= 0.1f;
         std::cout << "prssed " << translateRect.x << std::endl;
     }
-    // turn left: h
-    // turn right: l
-    // turn up: k
-    // turn down: j
-    if (key == GLFW_KEY_H && action == GLFW_PRESS) // Left
+    if (key == GLFW_KEY_UP && action == GLFW_PRESS) // need viewport bounds
     {
-        rotateDegrees = 90.0f;
-        std::cout << "rotated: " << rotateDegrees << std::endl;
+        if (playerDirection != 2)
+        {
+            rotateDegrees = 180.0f;
+            playerDirection = 2;
+        }
+        translateRect.y += 0.1f;
     }
-    if (key == GLFW_KEY_L && action == GLFW_PRESS) // Right
+    if (key == GLFW_KEY_DOWN && action == GLFW_PRESS) // TODO: viewport bounds
     {
-        rotateDegrees = 270.0f;
-        std::cout << "rotated: " << rotateDegrees << std::endl;
-    }
-    if (key == GLFW_KEY_K && action == GLFW_PRESS) // Up/back
-    {
-        rotateDegrees = 180.0f;
-        std::cout << "rotated: " << rotateDegrees << std::endl;
-    }
-    if (key == GLFW_KEY_J && action == GLFW_PRESS) // Down/front
-    {
-        rotateDegrees = 0.0f;
-        std::cout << "rotated: " << rotateDegrees << std::endl;
+        if (playerDirection != 0)
+        {
+            rotateDegrees = 0.0f;
+            playerDirection = 0;
+        }
+        translateRect.y -= 0.1f;
     }
 }
 
@@ -212,9 +219,10 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         // Update the MVP in shader
+        glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.7f, 0.7f, 0.7f));
         glm::mat4 rotation = glm::rotate(glm::radians(rotateDegrees), glm::vec3(0.0f, 1.0f, 0.0f));
         glm::mat4 translation = glm::translate(glm::mat4(1.0f), translateRect);
-        glm::mat4 modelMatrix = translation * rotation; // Should be scale, rotation, translation
+        glm::mat4 modelMatrix = translation * rotation * scale;
         glm::mat4 modelViewProjection = orthographicProjection * modelMatrix;
 
         glUniformMatrix4fv(mvpLocation, 1, GL_FALSE, &modelViewProjection[0][0]);
