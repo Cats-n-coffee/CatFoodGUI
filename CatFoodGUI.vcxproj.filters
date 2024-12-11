@@ -16,7 +16,10 @@
     <ClCompile Include="src\ShaderProgram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\resourceProcessing\TextureLoader.cpp">
+    <ClCompile Include="src\resourceProcessing\Texture2DPNG.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameObjects\Cat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -29,8 +32,9 @@
     <ClInclude Include="src\fileParserResource.h" />
     <ClInclude Include="src\resourceProcessing\FileParser.h" />
     <ClInclude Include="src\ShaderProgram.h" />
-    <ClInclude Include="src\resourceProcessing\TextureLoader.h" />
+    <ClInclude Include="src\resourceProcessing\Texture2DPNG.h" />
     <ClInclude Include="src\vendors\stb_image.h" />
+    <ClInclude Include="src\gameObjects\Cat.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\images\CatSprite256.png" />

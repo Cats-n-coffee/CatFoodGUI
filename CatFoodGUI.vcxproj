@@ -143,9 +143,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\gameObjects\Cat.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\resourceProcessing\FileParser.cpp" />
-    <ClCompile Include="src\resourceProcessing\TextureLoader.cpp" />
+    <ClCompile Include="src\resourceProcessing\Texture2DPNG.cpp" />
     <ClCompile Include="src\ShaderProgram.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -155,8 +156,9 @@
   <ItemGroup>
     <ClInclude Include="src\fileParserResource.cpp" />
     <ClInclude Include="src\fileParserResource.h" />
+    <ClInclude Include="src\gameObjects\Cat.h" />
     <ClInclude Include="src\resourceProcessing\FileParser.h" />
-    <ClInclude Include="src\resourceProcessing\TextureLoader.h" />
+    <ClInclude Include="src\resourceProcessing\Texture2DPNG.h" />
     <ClInclude Include="src\ShaderProgram.h" />
     <ClInclude Include="src\vendors\stb_image.h" />
   </ItemGroup>

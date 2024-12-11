@@ -2,8 +2,6 @@
 
 #include <iostream>
 #include <string>
-#define STB_IMAGE_IMPLEMENTATION
-#include "vendors/stb_image.h"
 #include <glew.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
@@ -11,6 +9,7 @@
 #include <glm/gtx/transform.hpp>
 
 #include "ShaderProgram.h"
+#include "resourceProcessing/Texture2DPNG.h"
 
 int width = 640;
 int height = 480;
@@ -150,30 +149,7 @@ int main()
     }
 
     // ========== Textures
-    unsigned int catSpriteTexture;
-    glGenTextures(1, &catSpriteTexture);
-
-    glBindTexture(GL_TEXTURE_2D, catSpriteTexture);
-
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-    int imageWidth, imageHeight, nrChannel;
-    stbi_set_flip_vertically_on_load(true);
-    unsigned char* imageData = stbi_load("resources/images/CatSprite256.png", &imageWidth, &imageHeight, &nrChannel, 0);
-
-    if (imageData)
-    {
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, imageWidth, imageHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageData);
-        glGenerateMipmap(GL_TEXTURE_2D);
-    }
-    else
-    {
-        std::cout << "Failed to load texture" << std::endl;
-    }
-    stbi_image_free(imageData);
+    unsigned int catSpriteTexture = generateTexture2DPNG("resources/images/CatSprite256.png");
 
     // ========== VAO, VBO
     unsigned int VAO, VBO;
