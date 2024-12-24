@@ -143,24 +143,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Application\Application.cpp" />
+    <ClCompile Include="src\gameLayer\Game.cpp" />
     <ClCompile Include="src\gameObjects\Cat.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\resourceProcessing\FileParser.cpp" />
     <ClCompile Include="src\resourceProcessing\Texture2DPNG.cpp" />
     <ClCompile Include="src\ShaderProgram.cpp" />
+    <ClCompile Include="src\Application\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\fragment.shader" />
     <None Include="resources\shaders\vertex.shader" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Application\Application.h" />
     <ClInclude Include="src\fileParserResource.cpp" />
     <ClInclude Include="src\fileParserResource.h" />
+    <ClInclude Include="src\gameLayer\Game.h" />
     <ClInclude Include="src\gameObjects\Cat.h" />
     <ClInclude Include="src\resourceProcessing\FileParser.h" />
     <ClInclude Include="src\resourceProcessing\Texture2DPNG.h" />
     <ClInclude Include="src\ShaderProgram.h" />
     <ClInclude Include="src\vendors\stb_image.h" />
+    <ClInclude Include="src\Application\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\images\CatSprite256.png" />

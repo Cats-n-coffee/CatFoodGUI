@@ -11,7 +11,10 @@ public:
 	~Window();
 
 	int Init(int width, int height);
+
 	GLFWwindow* GetWindow() const { return m_Window; }
+	int GetWindowWidth() const { return m_Width; }
+	int GetWindowHeight() const { return m_Height; }
 
 private:
 	GLFWwindow* m_Window = nullptr;

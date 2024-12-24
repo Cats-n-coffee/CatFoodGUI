@@ -22,6 +22,15 @@
     <ClCompile Include="src\gameObjects\Cat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Application\Window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameLayer\Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Application\Application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\vertex.shader" />
@@ -35,6 +44,9 @@
     <ClInclude Include="src\resourceProcessing\Texture2DPNG.h" />
     <ClInclude Include="src\vendors\stb_image.h" />
     <ClInclude Include="src\gameObjects\Cat.h" />
+    <ClInclude Include="src\Application\Window.h" />
+    <ClInclude Include="src\gameLayer\Game.h" />
+    <ClInclude Include="src\Application\Application.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\images\CatSprite256.png" />
