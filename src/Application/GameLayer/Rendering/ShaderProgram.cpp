@@ -1,5 +1,7 @@
 #include "ShaderProgram.h"
-#include "resourceProcessing/FileParser.h"
+#include "../../../resourceProcessing/FileParser.h"
+
+ShaderProgram::ShaderProgram() {}
 
 ShaderProgram::ShaderProgram(const std::string& vertexFilePath, const std::string& fragmentFilePath)
 	: m_vertexFilePath(vertexFilePath), m_fragmentFilePath(fragmentFilePath)

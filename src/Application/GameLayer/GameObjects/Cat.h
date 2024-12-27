@@ -6,13 +6,13 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/transform.hpp>
 
-#include "../resourceProcessing/Texture2DPNG.h"
+#include "../../../resourceProcessing/Texture2DPNG.h"
 
 class Cat
 {
 public:
+	Cat();
 	Cat(const std::string& name, const std::string& texturePath);
-	~Cat();
 
 	inline unsigned int GetCatTextureID() const { return m_TextureID; }
 	inline const std::vector<float> GetCatVertices() { return m_Vertices; }

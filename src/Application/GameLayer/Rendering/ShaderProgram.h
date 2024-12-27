@@ -7,6 +7,7 @@
 class ShaderProgram
 {
 public:
+	ShaderProgram();
 	ShaderProgram(const std::string& vertexFilePath, const std::string& fragmentFilePath);
 	~ShaderProgram();
 

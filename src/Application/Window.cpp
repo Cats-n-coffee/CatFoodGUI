@@ -43,7 +43,13 @@ int Window::Init(int width, int height)
     return 0; // ??
 }
 
+void Window::Terminate()
+{
+    glfwTerminate();
+    m_Window = nullptr;
+}
+
 Window::~Window()
 {
-	delete m_Window;
+    if (m_Window) delete m_Window;
 }

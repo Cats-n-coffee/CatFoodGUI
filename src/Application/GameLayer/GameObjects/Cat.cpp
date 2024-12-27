@@ -1,5 +1,7 @@
 #include "Cat.h"
 
+Cat::Cat() {}
+
 Cat::Cat(const std::string& name, const std::string& texturePath)
 	: m_Name(name), m_TexturePath(texturePath), m_TextureID(0)
 {
@@ -68,8 +70,4 @@ void const Cat::SetCatVertices() // TODO: This should come from a data file
         -0.25f, -0.25f, -0.25f,     0.0f, 1.0f, // back - bottom left
         -0.25f, -0.25f, 0.25f,      0.0f, 0.0f, // front - bottom left
     });
-};
-
-Cat::~Cat()
-{
 };

@@ -11,6 +11,7 @@ public:
 	~Window();
 
 	int Init(int width, int height);
+	void Terminate();
 
 	GLFWwindow* GetWindow() const { return m_Window; }
 	int GetWindowWidth() const { return m_Width; }

@@ -13,19 +13,19 @@
     <ClCompile Include="src\resourceProcessing\FileParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ShaderProgram.cpp">
+    <ClCompile Include="src\Application\GameLayer\Rendering\ShaderProgram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\resourceProcessing\Texture2DPNG.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\gameObjects\Cat.cpp">
+    <ClCompile Include="src\Application\GameLayer\GameObjects\Cat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Application\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\gameLayer\Game.cpp">
+    <ClCompile Include="src\Application\GameLayer\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Application\Application.cpp">
@@ -40,12 +40,12 @@
     <ClInclude Include="src\fileParserResource.cpp" />
     <ClInclude Include="src\fileParserResource.h" />
     <ClInclude Include="src\resourceProcessing\FileParser.h" />
-    <ClInclude Include="src\ShaderProgram.h" />
+    <ClInclude Include="src\Application\GameLayer\Rendering\ShaderProgram.h" />
     <ClInclude Include="src\resourceProcessing\Texture2DPNG.h" />
     <ClInclude Include="src\vendors\stb_image.h" />
-    <ClInclude Include="src\gameObjects\Cat.h" />
+    <ClInclude Include="src\Application\GameLayer\GameObjects\Cat.h" />
     <ClInclude Include="src\Application\Window.h" />
-    <ClInclude Include="src\gameLayer\Game.h" />
+    <ClInclude Include="src\Application\GameLayer\Game.h" />
     <ClInclude Include="src\Application\Application.h" />
   </ItemGroup>
   <ItemGroup>
