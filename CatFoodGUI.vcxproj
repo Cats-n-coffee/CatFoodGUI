@@ -146,6 +146,9 @@
     <ClCompile Include="src\Application\Application.cpp" />
     <ClCompile Include="src\Application\GameLayer\Game.cpp" />
     <ClCompile Include="src\Application\GameLayer\GameObjects\Cat.cpp" />
+    <ClCompile Include="src\Application\GameLayer\GameObjects\Food.cpp" />
+    <ClCompile Include="src\Application\GameLayer\Rendering\VAO.cpp" />
+    <ClCompile Include="src\Application\GameLayer\Rendering\VBO.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\resourceProcessing\FileParser.cpp" />
     <ClCompile Include="src\resourceProcessing\Texture2DPNG.cpp" />
@@ -153,11 +156,16 @@
     <ClCompile Include="src\Application\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="resources\shaders\fragment.shader" />
-    <None Include="resources\shaders\vertex.shader" />
+    <None Include="resources\shaders\catFragment.shader" />
+    <None Include="resources\shaders\catVertex.shader" />
+    <None Include="resources\shaders\foodFragment.shader" />
+    <None Include="resources\shaders\foodVertex.shader" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Application\Application.h" />
+    <ClInclude Include="src\Application\GameLayer\GameObjects\Food.h" />
+    <ClInclude Include="src\Application\GameLayer\Rendering\VAO.h" />
+    <ClInclude Include="src\Application\GameLayer\Rendering\VBO.h" />
     <ClInclude Include="src\fileParserResource.cpp" />
     <ClInclude Include="src\fileParserResource.h" />
     <ClInclude Include="src\Application\GameLayer\Game.h" />
@@ -170,6 +178,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\images\CatSprite256.png" />
+    <Image Include="resources\images\FishSprite256.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

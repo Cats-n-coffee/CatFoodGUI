@@ -11,9 +11,6 @@ namespace Application {
 
 	void keyEvents(GLFWwindow* window, int key, int scancode, int action, int mods)
 	{
-		// http://p-nand-q.com/programming/cplusplus/using_member_functions_with_c_function_pointers.html
-		// https://stackoverflow.com/questions/400257/how-can-i-pass-a-class-member-function-as-a-callback
-
 		m_Game.ProcessKeyEvents(key, scancode, action, mods);
 	}
 

@@ -40,3 +40,8 @@ unsigned int ShaderProgram::AddShader(const std::string& filePath, GLenum type)
 
 	return shader;
 }
+
+void ShaderProgram::UnBind()
+{
+	glUseProgram(0);
+}

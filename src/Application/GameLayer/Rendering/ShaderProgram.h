@@ -12,6 +12,7 @@ public:
 	~ShaderProgram();
 
 	inline const unsigned int getProgramId() { return m_shaderProgram; }
+	void UnBind();
 private:
 	unsigned int AddShader(const std::string& filePath, GLenum type);
 

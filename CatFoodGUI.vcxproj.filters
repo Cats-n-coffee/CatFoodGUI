@@ -31,10 +31,21 @@
     <ClCompile Include="src\Application\Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Application\GameLayer\GameObjects\Food.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Application\GameLayer\Rendering\VAO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Application\GameLayer\Rendering\VBO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="resources\shaders\vertex.shader" />
-    <None Include="resources\shaders\fragment.shader" />
+    <None Include="resources\shaders\catVertex.shader" />
+    <None Include="resources\shaders\catFragment.shader" />
+    <None Include="resources\shaders\foodFragment.shader" />
+    <None Include="resources\shaders\foodVertex.shader" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\fileParserResource.cpp" />
@@ -47,8 +58,12 @@
     <ClInclude Include="src\Application\Window.h" />
     <ClInclude Include="src\Application\GameLayer\Game.h" />
     <ClInclude Include="src\Application\Application.h" />
+    <ClInclude Include="src\Application\GameLayer\GameObjects\Food.h" />
+    <ClInclude Include="src\Application\GameLayer\Rendering\VAO.h" />
+    <ClInclude Include="src\Application\GameLayer\Rendering\VBO.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\images\CatSprite256.png" />
+    <Image Include="resources\images\FishSprite256.png" />
   </ItemGroup>
 </Project>

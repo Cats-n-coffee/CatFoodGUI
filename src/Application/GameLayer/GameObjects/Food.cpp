@@ -1,43 +1,50 @@
-#include "Cat.h"
+#include "Food.h"
 
-Cat::Cat() {}
+Food::Food()
+{}
 
-Cat::Cat(const std::string& name, const std::string& texturePath)
-	: m_Name(name), m_TexturePath(texturePath), m_TextureID(0)
+Food::Food(const std::string& texturePath)
 {
-	if (texturePath.empty()) SetCatTexture("resources/images/CatSprite256.png");
-	else SetCatTexture(texturePath);
+    // TODO: add texture like for the cat
+    if (texturePath.empty()) SetFoodTexture("resources/images/FishSprite256.png");
+    else SetFoodTexture(texturePath);
 
-    SetCatVertices();
+    SetVertices();
 
-    // Set up VAO, VBO and Shader
-    m_CatVAO = VAO(1);
-    m_CatVAO.Bind();
-    m_CatVBO = VBO(1);
-    m_CatVBO.Bind();
+    m_VAO = VAO(1);
+    m_VAO.Bind();
+    m_VBO = VBO(1);
+    m_VBO.Bind();
 
     m_ShaderProgram = ShaderProgram(
-        "resources/shaders/catVertex.shader",
-        "resources/shaders/catFragment.shader"
+        "resources/shaders/foodVertex.shader",
+        "resources/shaders/foodFragment.shader"
     );
     m_MvpLocation = glGetUniformLocation(m_ShaderProgram.getProgramId(), "modelViewProjection");
 
-    m_CatVBO.PassBufferData(m_Vertices.size() * sizeof(float), m_Vertices);
-    m_CatVBO.SpecifyDataLayout(0, 3, 5 * sizeof(float), 0); // positions
-    m_CatVBO.SpecifyDataLayout(1, 2, 5 * sizeof(float), 3 * sizeof(float)); // texture
+    m_VBO.PassBufferData(m_Vertices.size() * sizeof(float), m_Vertices);
+    m_VBO.SpecifyDataLayout(0, 3, 5 * sizeof(float), 0); // positions
+    m_VBO.SpecifyDataLayout(1, 2, 5 * sizeof(float), 3 * sizeof(float)); // texture
 
-    m_CatVAO.UnBind();
-    m_CatVBO.UnBind();
+    m_VAO.UnBind();
+    m_VBO.UnBind();
     m_ShaderProgram.UnBind();
-};
+}
 
-void Cat::SetCatTexture(const std::string& texture)
+void Food::SetFoodTexture(const std::string& texturePath)
 {
-    m_TexturePath = texture;
-    m_TextureID = generateTexture2DPNG(texture);
-};
+    m_FoodTextureID = generateTexture2DPNG(texturePath);
+}
 
-void const Cat::SetCatVertices() // TODO: This should come from a data file
+void Food::Init()
+{
+    // This should probably init the whole object
+    // including shader program, vao and vbo
+    // as well as vertices and textures
+    SetVertices();
+}
+
+void Food::SetVertices()
 {
     m_Vertices.insert(m_Vertices.end(), {
         //      positions               UV
@@ -90,24 +97,24 @@ void const Cat::SetCatVertices() // TODO: This should come from a data file
         -0.25f, -0.25f, -0.25f,     0.0f, 1.0f, // back - bottom left
         -0.25f, -0.25f, 0.25f,      0.0f, 0.0f, // front - bottom left
     });
-};
-
-void Cat::UpdateObject(glm::mat4& orthographicProjection)
-{
-	glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.7f, 0.7f, 0.7f));
-	glm::mat4 rotation = glm::rotate(glm::radians(m_RotateDegrees), glm::vec3(0.0f, 1.0f, 0.0f));
-	glm::mat4 translation = glm::translate(glm::mat4(1.0f), m_TranslateVector);
-	glm::mat4 modelMatrix = translation * rotation * scale;
-	m_ModelViewProjection = orthographicProjection * modelMatrix;
 }
 
-void Cat::RenderObject()
+void Food::UpdateObject(glm::mat4& orthographicProjection)
 {
-	glBindTexture(GL_TEXTURE_2D, m_TextureID);
-	glBindVertexArray(m_CatVAO.GetID()); // this is needed here - why? 
+    m_ModelViewProjection = orthographicProjection * glm::mat4(1.0f);
+}
+
+void Food::RenderObject()
+{
+
+	glBindTexture(GL_TEXTURE_2D, m_FoodTextureID);
+	glBindVertexArray(m_VAO.GetID());
 
 	glUseProgram(m_ShaderProgram.getProgramId());
 	glUniformMatrix4fv(m_MvpLocation, 1, GL_FALSE, &m_ModelViewProjection[0][0]);
 
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 }
+
+Food::~Food()
+{}
