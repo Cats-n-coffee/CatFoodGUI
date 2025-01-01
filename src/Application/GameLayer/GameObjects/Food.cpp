@@ -5,7 +5,11 @@ Food::Food()
 
 Food::Food(const std::string& texturePath)
 {
-    // TODO: add texture like for the cat
+    Init(texturePath);
+}
+
+void Food::Init(const std::string& texturePath)
+{
     if (texturePath.empty()) SetFoodTexture("resources/images/FishSprite256.png");
     else SetFoodTexture(texturePath);
 
@@ -34,14 +38,6 @@ Food::Food(const std::string& texturePath)
 void Food::SetFoodTexture(const std::string& texturePath)
 {
     m_FoodTextureID = generateTexture2DPNG(texturePath);
-}
-
-void Food::Init()
-{
-    // This should probably init the whole object
-    // including shader program, vao and vbo
-    // as well as vertices and textures
-    SetVertices();
 }
 
 void Food::SetVertices()

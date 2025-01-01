@@ -5,6 +5,11 @@ Cat::Cat() {}
 Cat::Cat(const std::string& name, const std::string& texturePath)
 	: m_Name(name), m_TexturePath(texturePath), m_TextureID(0)
 {
+    Init(name, texturePath);
+};
+
+void Cat::Init(const std::string& name, const std::string& texturePath)
+{
 	if (texturePath.empty()) SetCatTexture("resources/images/CatSprite256.png");
 	else SetCatTexture(texturePath);
 
@@ -29,7 +34,7 @@ Cat::Cat(const std::string& name, const std::string& texturePath)
     m_CatVAO.UnBind();
     m_CatVBO.UnBind();
     m_ShaderProgram.UnBind();
-};
+}
 
 void Cat::SetCatTexture(const std::string& texture)
 {
@@ -110,4 +115,46 @@ void Cat::RenderObject()
 	glUniformMatrix4fv(m_MvpLocation, 1, GL_FALSE, &m_ModelViewProjection[0][0]);
 
 	glDrawArrays(GL_TRIANGLES, 0, 36);
+}
+
+void Cat::MoveUp()
+{
+	if (m_CatDirection != Direction::up)
+	{
+		m_RotateDegrees = FACE_UP;
+		m_CatDirection = Direction::up;
+	}
+	m_TranslateVector.y += 0.1f;
+}
+
+void Cat::MoveDown()
+{
+	if (m_CatDirection != Direction::down)
+	{
+		m_RotateDegrees = FACE_DOWN;
+		m_CatDirection = Direction::down;
+	}
+	m_TranslateVector.y -= 0.1f;
+}
+
+void Cat::MoveLeft()
+{
+	if (m_CatDirection != Direction::left)
+	{
+		m_RotateDegrees = FACE_LEFT;
+		m_CatDirection = Direction::left;
+	}
+	m_TranslateVector.x -= 0.1f;
+	std::cout << "prssed " << m_TranslateVector.x << std::endl;
+}
+
+void Cat::MoveRight()
+{
+	if (m_CatDirection != Direction::right)
+	{
+		m_RotateDegrees = FACE_RIGHT;
+		m_CatDirection = Direction::right;
+	}
+	m_TranslateVector.x += 0.1f;
+	std::cout << "prssed " << m_TranslateVector.x << std::endl;
 }

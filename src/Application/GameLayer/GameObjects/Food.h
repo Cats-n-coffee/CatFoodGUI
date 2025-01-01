@@ -18,8 +18,6 @@ public:
 	Food(const std::string& texturePath);
 	~Food();
 
-	void Init(); // Maybe this should return a bool to let the caller know if it was a success
-
 	void UpdateObject(glm::mat4& orthographicProjection);
 	void RenderObject();
 
@@ -34,6 +32,7 @@ private:
 
 	glm::mat4 m_ModelViewProjection = glm::mat4(1.0f);
 
+	void Init(const std::string& texturePath); // Maybe this should return a bool to let the caller know if it was a success
 	void SetVertices();
 	void SetFoodTexture(const std::string& texturePath);
 };

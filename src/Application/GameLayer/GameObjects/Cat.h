@@ -11,6 +11,11 @@
 #include "../Rendering/VAO.h"
 #include "../Rendering/VBO.h"
 
+const float FACE_RIGHT = 270.0f;
+const float FACE_LEFT = 90.0f;
+const float FACE_UP = 180.0f;
+const float FACE_DOWN = 0.0f;
+
 class Cat
 {
 public:
@@ -20,14 +25,25 @@ public:
 	void UpdateObject(glm::mat4& orthographicProjection);
 	void RenderObject();
 
+	void MoveUp();
+	void MoveDown();
+	void MoveLeft();
+	void MoveRight();
+
 private:
+	enum Direction {
+		down,
+		up,
+		left,
+		right,
+	};
+
 	std::string m_Name = "";
 	std::string m_TexturePath = "";
 	unsigned int m_TextureID = 0;
 	
 	std::vector<float> m_Vertices; // TODO: copy data over
 
-// 	unsigned int m_VAO = 0, m_VBO = 0;
 	VAO m_CatVAO;
 	VBO m_CatVBO;
 	ShaderProgram m_ShaderProgram;
@@ -36,9 +52,10 @@ private:
 	// MVP things
 	glm::mat4 m_ModelViewProjection = glm::mat4(1.0f);
 	glm::vec3 m_TranslateVector = glm::vec3(0.0f);
-	float m_RotateDegrees = 0.0f;
-	short m_CatDirection = 0; // Keep this here?
+	float m_RotateDegrees = FACE_DOWN;
+	short m_CatDirection = Direction::down; // Keep this here?
 
+	void Init(const std::string& name, const std::string& texturePath);
 	void const SetCatVertices();
 	void SetCatTexture(const std::string& texture);
 };

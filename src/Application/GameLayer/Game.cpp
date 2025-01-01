@@ -18,41 +18,19 @@ void Game::ProcessKeyEvents(int key, int scancode, int action, int mods)
 {
 	if (key == GLFW_KEY_RIGHT && action == GLFW_PRESS) // TODO: need viewport bounds
 	{
-		if (playerDirection != 3)
-		{
-			rotateDegrees = 270.0f;
-			playerDirection = 3;
-		}
-		translateRect.x += 0.1f;
-		std::cout << "prssed " << translateRect.x << std::endl;
+		m_CatObject.MoveRight();
 	}
 	if (key == GLFW_KEY_LEFT && action == GLFW_PRESS) // need viewport bounds
 	{
-		if (playerDirection != 1)
-		{
-			rotateDegrees = 90.0f;
-			playerDirection = 1;
-		}
-		translateRect.x -= 0.1f;
-		std::cout << "prssed " << translateRect.x << std::endl;
+		m_CatObject.MoveLeft();
 	}
 	if (key == GLFW_KEY_UP && action == GLFW_PRESS) // need viewport bounds
 	{
-		if (playerDirection != 2)
-		{
-			rotateDegrees = 180.0f;
-			playerDirection = 2;
-		}
-		translateRect.y += 0.1f;
+		m_CatObject.MoveUp();
 	}
 	if (key == GLFW_KEY_DOWN && action == GLFW_PRESS) // TODO: viewport bounds
 	{
-		if (playerDirection != 0)
-		{
-			rotateDegrees = 0.0f;
-			playerDirection = 0;
-		}
-		translateRect.y -= 0.1f;
+		m_CatObject.MoveDown();
 	}
 }
 
