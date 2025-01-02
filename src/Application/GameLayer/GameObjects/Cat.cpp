@@ -117,44 +117,70 @@ void Cat::RenderObject()
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 }
 
+void Cat::UpdateBoundingBox(std::vector<glm::vec3>& boundingBox, Direction direction)
+{
+    for (auto& vertex : boundingBox)
+    {
+        if (direction == up) vertex.y += 0.1f;
+        else if (direction == down) vertex.y -= 0.1f;
+        else if (direction == left) vertex.x -= 0.1f;
+        else if (direction == right) vertex.x += 0.1f;
+    }
+}
+
 void Cat::MoveUp()
 {
+    if (m_BoundingBox[0].y >= 1.0f) return;
+
 	if (m_CatDirection != Direction::up)
 	{
 		m_RotateDegrees = FACE_UP;
 		m_CatDirection = Direction::up;
 	}
 	m_TranslateVector.y += 0.1f;
+
+    UpdateBoundingBox(m_BoundingBox, Direction::up);
+    std::cout << "box " << m_BoundingBox[0].y << std::endl;
 }
 
 void Cat::MoveDown()
 {
+    if (m_BoundingBox[2].y <= -1.0f) return; // bounds check - but incorrectly done
+
 	if (m_CatDirection != Direction::down)
 	{
 		m_RotateDegrees = FACE_DOWN;
 		m_CatDirection = Direction::down;
 	}
 	m_TranslateVector.y -= 0.1f;
+    UpdateBoundingBox(m_BoundingBox, Direction::down);
+    std::cout << "box " << m_BoundingBox[2].y << std::endl;
 }
 
 void Cat::MoveLeft()
 {
+    if (m_BoundingBox[0].x <= -1.0f) return;
+
 	if (m_CatDirection != Direction::left)
 	{
 		m_RotateDegrees = FACE_LEFT;
 		m_CatDirection = Direction::left;
 	}
 	m_TranslateVector.x -= 0.1f;
-	std::cout << "prssed " << m_TranslateVector.x << std::endl;
+    UpdateBoundingBox(m_BoundingBox, Direction::left);
+    std::cout << "box " << m_BoundingBox[0].x << std::endl;
 }
 
 void Cat::MoveRight()
 {
+    if (m_BoundingBox[2].x >= 1.0f) return;
+
 	if (m_CatDirection != Direction::right)
 	{
 		m_RotateDegrees = FACE_RIGHT;
 		m_CatDirection = Direction::right;
 	}
 	m_TranslateVector.x += 0.1f;
-	std::cout << "prssed " << m_TranslateVector.x << std::endl;
+    UpdateBoundingBox(m_BoundingBox, Direction::right);
+    std::cout << "box " << m_BoundingBox[2].x << std::endl;
 }

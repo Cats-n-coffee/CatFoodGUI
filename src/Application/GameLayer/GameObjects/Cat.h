@@ -53,9 +53,21 @@ private:
 	glm::mat4 m_ModelViewProjection = glm::mat4(1.0f);
 	glm::vec3 m_TranslateVector = glm::vec3(0.0f);
 	float m_RotateDegrees = FACE_DOWN;
-	short m_CatDirection = Direction::down; // Keep this here?
+	short m_CatDirection = Direction::down;
 
+	// Collisions
+	std::vector<glm::vec3> m_BoundingBox = { // this needs to be automated
+		glm::vec3(-0.25f, 0.25f, 0.0f), // top left
+		glm::vec3(0.25f, 0.25f, 0.0f), // top right
+		glm::vec3(0.25f, -0.25f, 0.0f), // bottom right
+		glm::vec3(-0.25f, -0.25f, 0.0f), // bottom left
+	};
+
+	// Methods
 	void Init(const std::string& name, const std::string& texturePath);
 	void const SetCatVertices();
 	void SetCatTexture(const std::string& texture);
+
+	// Collisions methods - to be moved
+	void UpdateBoundingBox(std::vector<glm::vec3>& boundingBox, Direction direction);
 };
