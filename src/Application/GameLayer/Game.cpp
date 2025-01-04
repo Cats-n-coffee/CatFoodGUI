@@ -16,19 +16,20 @@ void Game::Init()
 
 void Game::ProcessKeyEvents(int key, int scancode, int action, int mods)
 {
-	if (key == GLFW_KEY_RIGHT && action == GLFW_PRESS) // TODO: need viewport bounds
+	// TODO: verify key press and repeat logic
+	if (key == GLFW_KEY_RIGHT && (action == GLFW_PRESS || action == GLFW_REPEAT))
 	{
 		m_CatObject.MoveRight();
 	}
-	if (key == GLFW_KEY_LEFT && action == GLFW_PRESS) // need viewport bounds
+	if (key == GLFW_KEY_LEFT && (action == GLFW_PRESS || action == GLFW_REPEAT))
 	{
 		m_CatObject.MoveLeft();
 	}
-	if (key == GLFW_KEY_UP && action == GLFW_PRESS) // need viewport bounds
+	if (key == GLFW_KEY_UP && (action == GLFW_PRESS || action == GLFW_REPEAT))
 	{
 		m_CatObject.MoveUp();
 	}
-	if (key == GLFW_KEY_DOWN && action == GLFW_PRESS) // TODO: viewport bounds
+	if (key == GLFW_KEY_DOWN && (action == GLFW_PRESS || action == GLFW_REPEAT))
 	{
 		m_CatObject.MoveDown();
 	}
