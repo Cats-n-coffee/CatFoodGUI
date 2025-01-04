@@ -29,7 +29,9 @@ private:
 	VBO m_VBO;
 	ShaderProgram m_ShaderProgram;
 	unsigned int m_MvpLocation = 0;
-
+	
+	// MVP business
+	glm::vec3 m_TranslateVector = glm::vec3(0.6f, 0.6f, 0.0f);
 	glm::mat4 m_ModelViewProjection = glm::mat4(1.0f);
 
 	void Init(const std::string& texturePath); // Maybe this should return a bool to let the caller know if it was a success

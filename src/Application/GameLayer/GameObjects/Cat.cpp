@@ -145,7 +145,7 @@ void Cat::MoveUp()
 
 void Cat::MoveDown()
 {
-    if (m_BoundingBox[2].y <= -1.0f) return; // bounds check - but incorrectly done
+    if (m_BoundingBox[2].y <= -1.0f) return; // might need to revise
 
 	if (m_CatDirection != Direction::down)
 	{

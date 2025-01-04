@@ -97,7 +97,11 @@ void Food::SetVertices()
 
 void Food::UpdateObject(glm::mat4& orthographicProjection)
 {
-    m_ModelViewProjection = orthographicProjection * glm::mat4(1.0f);
+	// glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.7f, 0.7f, 0.7f));
+// 	glm::mat4 rotation = glm::rotate(glm::radians(m_RotateDegrees), glm::vec3(0.0f, 1.0f, 0.0f));
+	glm::mat4 translation = glm::translate(glm::mat4(1.0f), m_TranslateVector);
+    glm::mat4 modelMatrix = translation;
+    m_ModelViewProjection = orthographicProjection * modelMatrix;
 }
 
 void Food::RenderObject()

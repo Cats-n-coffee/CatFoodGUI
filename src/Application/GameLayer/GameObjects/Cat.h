@@ -50,9 +50,10 @@ private:
 	unsigned int m_MvpLocation = 0;
 	
 	// MVP things
-	glm::mat4 m_ModelViewProjection = glm::mat4(1.0f);
-	glm::vec3 m_TranslateVector = glm::vec3(0.0f);
 	float m_RotateDegrees = FACE_DOWN;
+	glm::vec3 m_TranslateVector = glm::vec3(0.0f);
+	glm::mat4 m_ModelViewProjection = glm::mat4(1.0f);
+
 	short m_CatDirection = Direction::down;
 
 	// Collisions
