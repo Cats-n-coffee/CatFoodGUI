@@ -14,6 +14,12 @@ namespace Application {
 		m_Game.ProcessKeyEvents(key, scancode, action, mods);
 	}
 
+	void framebufferSize(GLFWwindow* window, int width, int height)
+	{
+		// okay for now, let's see later with a tile map the behavior we want
+		glViewport(0, 0, width, height);
+	}
+
 	void Init()
 	{
 		// Init window
@@ -26,6 +32,8 @@ namespace Application {
 		// User input
 		glfwSetKeyCallback(window, keyEvents);
 
+		// Window resize
+		glfwSetFramebufferSizeCallback(window, framebufferSize);
 		/*
 		while(Game.IsRunning)
 		{
