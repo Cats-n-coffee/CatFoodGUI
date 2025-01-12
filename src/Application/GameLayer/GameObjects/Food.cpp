@@ -33,6 +33,8 @@ void Food::Init(const std::string& texturePath)
     m_VAO.UnBind();
     m_VBO.UnBind();
     m_ShaderProgram.UnBind();
+
+    TempBoundingBoxTranslate();
 }
 
 void Food::SetFoodTexture(const std::string& texturePath)
@@ -93,6 +95,27 @@ void Food::SetVertices()
         -0.25f, -0.25f, -0.25f,     0.0f, 1.0f, // back - bottom left
         -0.25f, -0.25f, 0.25f,      0.0f, 0.0f, // front - bottom left
     });
+}
+
+void Food::UpdateBoundingBox(std::vector<glm::vec3>& boundingBox, Direction direction)
+{
+    for (auto& vertex : boundingBox)
+    { // update precision
+        if (direction == up) vertex.y += 0.1f;
+        else if (direction == down) vertex.y -= 0.1f;
+        else if (direction == left) vertex.x -= 0.1f;
+        else if (direction == right) vertex.x += 0.1f;
+    }
+}
+
+void Food::TempBoundingBoxTranslate()
+{
+    for (auto& vertex : m_BoundingBox)
+    { // this is wrong
+        vertex.x += m_TranslateVector.x;
+        vertex.y += m_TranslateVector.y;
+        vertex.z += m_TranslateVector.z;
+    }
 }
 
 void Food::UpdateObject(glm::mat4& orthographicProjection)

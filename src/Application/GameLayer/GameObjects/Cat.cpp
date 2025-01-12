@@ -121,26 +121,29 @@ void Cat::UpdateBoundingBox(std::vector<glm::vec3>& boundingBox, Direction direc
 {
     for (auto& vertex : boundingBox)
     {
-        if (direction == up) vertex.y += 0.1f;
-        else if (direction == down) vertex.y -= 0.1f;
-        else if (direction == left) vertex.x -= 0.1f;
-        else if (direction == right) vertex.x += 0.1f;
+        if (direction == up) vertex.y += 0.01f;
+        else if (direction == down) vertex.y -= 0.01f;
+        else if (direction == left) vertex.x -= 0.01f;
+        else if (direction == right) vertex.x += 0.01f;
     }
 }
 
 void Cat::MoveUp()
 {
+    // Window bounds check
     if (m_BoundingBox[0].y >= 1.0f) return;
 
+    // We can allow rotation
 	if (m_CatDirection != Direction::up)
 	{
 		m_RotateDegrees = FACE_UP;
 		m_CatDirection = Direction::up;
 	}
-	m_TranslateVector.y += 0.1f;
+    // But here we need to check before translating
+	m_TranslateVector.y += 0.01f;
 
     UpdateBoundingBox(m_BoundingBox, Direction::up);
-    std::cout << "box " << m_BoundingBox[0].y << std::endl;
+     // std::cout << " left X " << m_BoundingBox[0].x << " top Y " << m_BoundingBox[0].y << " right X " << m_BoundingBox[2].x << " bottom Y " << m_BoundingBox[2].y << std::endl;
 }
 
 void Cat::MoveDown()
@@ -152,9 +155,9 @@ void Cat::MoveDown()
 		m_RotateDegrees = FACE_DOWN;
 		m_CatDirection = Direction::down;
 	}
-	m_TranslateVector.y -= 0.1f;
+	m_TranslateVector.y -= 0.01f;
+
     UpdateBoundingBox(m_BoundingBox, Direction::down);
-    std::cout << "box " << m_BoundingBox[2].y << std::endl;
 }
 
 void Cat::MoveLeft()
@@ -166,9 +169,9 @@ void Cat::MoveLeft()
 		m_RotateDegrees = FACE_LEFT;
 		m_CatDirection = Direction::left;
 	}
-	m_TranslateVector.x -= 0.1f;
+	m_TranslateVector.x -= 0.01f;
+
     UpdateBoundingBox(m_BoundingBox, Direction::left);
-    std::cout << "box " << m_BoundingBox[0].x << std::endl;
 }
 
 void Cat::MoveRight()
@@ -180,7 +183,7 @@ void Cat::MoveRight()
 		m_RotateDegrees = FACE_RIGHT;
 		m_CatDirection = Direction::right;
 	}
-	m_TranslateVector.x += 0.1f;
+	m_TranslateVector.x += 0.01f;
+
     UpdateBoundingBox(m_BoundingBox, Direction::right);
-    std::cout << "box " << m_BoundingBox[2].x << std::endl;
 }

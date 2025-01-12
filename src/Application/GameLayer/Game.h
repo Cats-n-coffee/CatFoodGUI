@@ -25,18 +25,21 @@ public:
 	inline glm::mat4 GetOrthographicProjection() const { return m_OrthographicProjection; }
 
 private:
+	enum Direction {
+		down,
+		up,
+		left,
+		right,
+	};
 	// Objects & texture
 	Cat m_CatObject;
 	Food m_FoodFirstObject;
+
+	// Collision test
+	bool CheckCollisionWithCat(Direction direction);
 
 	// Transformations
     glm::mat4 m_OrthographicProjection = glm::ortho(
        -1.0f, 1.0f, -1.0f, 1.0f, 0.1f, 100.0f
     );
-
-	// TODO: what we do with this?
-	glm::vec3 translateRect = glm::vec3(0.0f, 0.0f, 0.0f);
-	float rotateDegrees = 0.0f;
-
-	short playerDirection = 0;
 };

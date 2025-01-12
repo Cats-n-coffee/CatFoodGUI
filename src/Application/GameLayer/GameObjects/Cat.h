@@ -22,6 +22,8 @@ public:
 	Cat();
 	Cat(const std::string& name, const std::string& texturePath);
 
+	std::vector<glm::vec3> GetBoundingBox() const { return m_BoundingBox; }
+
 	void UpdateObject(glm::mat4& orthographicProjection);
 	void RenderObject();
 
