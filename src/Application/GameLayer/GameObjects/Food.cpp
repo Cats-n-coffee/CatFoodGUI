@@ -34,7 +34,7 @@ void Food::Init(const std::string& texturePath)
     m_VBO.UnBind();
     m_ShaderProgram.UnBind();
 
-    TempBoundingBoxTranslate();
+    TempBoundingBoxTransform();
 }
 
 void Food::SetFoodTexture(const std::string& texturePath)
@@ -108,8 +108,14 @@ void Food::UpdateBoundingBox(std::vector<glm::vec3>& boundingBox, Direction dire
     }
 }
 
-void Food::TempBoundingBoxTranslate()
-{
+void Food::TempBoundingBoxTransform()
+{ // scale and translate bounding box
+    for (auto& vertex : m_BoundingBox)
+    {
+        vertex.x *= m_ScalingVector.x;
+        vertex.y *= m_ScalingVector.y;
+        vertex.z *= m_ScalingVector.z;
+    }
     for (auto& vertex : m_BoundingBox)
     { // this is wrong
         vertex.x += m_TranslateVector.x;
@@ -120,10 +126,10 @@ void Food::TempBoundingBoxTranslate()
 
 void Food::UpdateObject(glm::mat4& orthographicProjection)
 {
-	// glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.7f, 0.7f, 0.7f));
+	glm::mat4 scale = glm::scale(glm::mat4(1.0f), m_ScalingVector);
 // 	glm::mat4 rotation = glm::rotate(glm::radians(m_RotateDegrees), glm::vec3(0.0f, 1.0f, 0.0f));
 	glm::mat4 translation = glm::translate(glm::mat4(1.0f), m_TranslateVector);
-    glm::mat4 modelMatrix = translation;
+    glm::mat4 modelMatrix = translation * scale;
     m_ModelViewProjection = orthographicProjection * modelMatrix;
 }
 

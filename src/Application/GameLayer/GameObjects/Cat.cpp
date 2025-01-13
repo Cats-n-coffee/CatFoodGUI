@@ -34,6 +34,8 @@ void Cat::Init(const std::string& name, const std::string& texturePath)
     m_CatVAO.UnBind();
     m_CatVBO.UnBind();
     m_ShaderProgram.UnBind();
+
+    TempBoundingBoxTransform();
 }
 
 void Cat::SetCatTexture(const std::string& texture)
@@ -99,7 +101,7 @@ void const Cat::SetCatVertices() // TODO: This should come from a data file
 
 void Cat::UpdateObject(glm::mat4& orthographicProjection)
 {
-	glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.7f, 0.7f, 0.7f));
+	glm::mat4 scale = glm::scale(glm::mat4(1.0f), m_ScalingVector);
 	glm::mat4 rotation = glm::rotate(glm::radians(m_RotateDegrees), glm::vec3(0.0f, 1.0f, 0.0f));
 	glm::mat4 translation = glm::translate(glm::mat4(1.0f), m_TranslateVector);
 	glm::mat4 modelMatrix = translation * rotation * scale;
@@ -115,6 +117,16 @@ void Cat::RenderObject()
 	glUniformMatrix4fv(m_MvpLocation, 1, GL_FALSE, &m_ModelViewProjection[0][0]);
 
 	glDrawArrays(GL_TRIANGLES, 0, 36);
+}
+
+void Cat::TempBoundingBoxTransform()
+{
+    for (auto& vertex : m_BoundingBox)
+    {
+        vertex.x *= m_ScalingVector.x;
+        vertex.y *= m_ScalingVector.y;
+        vertex.z *= m_ScalingVector.z;
+    }
 }
 
 void Cat::UpdateBoundingBox(std::vector<glm::vec3>& boundingBox, Direction direction)

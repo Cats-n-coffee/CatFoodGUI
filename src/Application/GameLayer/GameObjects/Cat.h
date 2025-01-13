@@ -52,6 +52,7 @@ private:
 	unsigned int m_MvpLocation = 0;
 	
 	// MVP things
+	glm::vec3 m_ScalingVector = glm::vec3(0.5f, 0.5f, 0.5f);
 	float m_RotateDegrees = FACE_DOWN;
 	glm::vec3 m_TranslateVector = glm::vec3(0.0f);
 	glm::mat4 m_ModelViewProjection = glm::mat4(1.0f);
@@ -73,4 +74,5 @@ private:
 
 	// Collisions methods - to be moved
 	void UpdateBoundingBox(std::vector<glm::vec3>& boundingBox, Direction direction);
+	void TempBoundingBoxTransform();
 };

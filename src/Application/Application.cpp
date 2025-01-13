@@ -17,6 +17,9 @@ namespace Application {
 	void framebufferSize(GLFWwindow* window, int width, int height)
 	{
 		// okay for now, let's see later with a tile map the behavior we want
+		// which might be adjusting the camera position closer/further
+		// would we also need to pass the window width and height to make it all
+		// proportional? (camera and perspective)
 		glViewport(0, 0, width, height);
 	}
 
