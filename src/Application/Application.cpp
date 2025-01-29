@@ -6,6 +6,8 @@ namespace Application {
     {
         Window m_GameWindow;
         Game m_Game;
+
+		double lastFrame = 0.0;
     }
 
 
@@ -53,9 +55,12 @@ namespace Application {
 
 		while (!glfwWindowShouldClose(window))
 		{
+			double currentFrame = glfwGetTime();
+			double deltaTime = currentFrame - lastFrame;
+			lastFrame = currentFrame;
 
 			// First: Update the MVP in shader
-			m_Game.Update();
+			m_Game.Update(deltaTime);
 
 			// Second: Render
 			m_Game.Render();

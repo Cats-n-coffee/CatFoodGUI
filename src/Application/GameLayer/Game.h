@@ -19,7 +19,7 @@ public:
 
 	void ProcessKeyEvents(int key, int scancode, int action, int mods);
 
-	void Update();
+	void Update(double deltaTime);
 	void Render();
 	
 	inline glm::mat4 GetOrthographicProjection() const { return m_OrthographicProjection; }

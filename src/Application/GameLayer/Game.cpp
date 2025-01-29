@@ -39,14 +39,14 @@ void Game::ProcessKeyEvents(int key, int scancode, int action, int mods)
 	}
 }
 
-void Game::Update()
+void Game::Update(double deltaTime)
 {
 	{ // Update MVP for cat
 		m_CatObject.UpdateObject(m_OrthographicProjection);
 	}
 	
 	{ // Update MVP for food
-		m_FoodFirstObject.UpdateObject(m_OrthographicProjection);
+		m_FoodFirstObject.UpdateObject(m_OrthographicProjection, deltaTime);
 	}
 }
 
