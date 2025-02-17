@@ -13,6 +13,7 @@ public:
 	void UnBind();
 
 	void PassBufferData(unsigned int dataSize, std::vector<float>& data);
+	void PassBufferData(unsigned int dataSize, float* data);
 
 	void SpecifyDataLayout(unsigned int index, unsigned int size, unsigned int stride, unsigned int offset);
 private:

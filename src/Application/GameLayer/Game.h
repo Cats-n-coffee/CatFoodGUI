@@ -9,6 +9,7 @@
 
 #include "GameObjects/Cat.h"
 #include "GameObjects/Food.h"
+#include "GameWorld/Tilemap.h"
 
 class Game
 {
@@ -34,6 +35,7 @@ private:
 	// Objects & texture
 	Cat m_CatObject;
 	Food m_FoodFirstObject;
+	Tilemap m_TilemapObject;
 
 	// Collision test
 	bool CheckCollisionWithCat(Direction direction);

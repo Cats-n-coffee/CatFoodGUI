@@ -133,7 +133,7 @@ void Food::UpdateObject(glm::mat4& orthographicProjection, double deltaTime)
     m_ModelViewProjection = orthographicProjection * modelMatrix;
 
     m_deltaTime = deltaTime;
-    UpdateFoodPosition();
+    // UpdateFoodPosition();
 }
 
 void Food::RenderObject()

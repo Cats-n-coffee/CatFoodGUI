@@ -147,6 +147,8 @@
     <ClCompile Include="src\Application\GameLayer\Game.cpp" />
     <ClCompile Include="src\Application\GameLayer\GameObjects\Cat.cpp" />
     <ClCompile Include="src\Application\GameLayer\GameObjects\Food.cpp" />
+    <ClCompile Include="src\Application\GameLayer\GameWorld\Tilemap.cpp" />
+    <ClCompile Include="src\Application\GameLayer\Networking\SocketClient.cpp" />
     <ClCompile Include="src\Application\GameLayer\Rendering\VAO.cpp" />
     <ClCompile Include="src\Application\GameLayer\Rendering\VBO.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -164,6 +166,8 @@
   <ItemGroup>
     <ClInclude Include="src\Application\Application.h" />
     <ClInclude Include="src\Application\GameLayer\GameObjects\Food.h" />
+    <ClInclude Include="src\Application\GameLayer\GameWorld\Tilemap.h" />
+    <ClInclude Include="src\Application\GameLayer\Networking\SocketClient.h" />
     <ClInclude Include="src\Application\GameLayer\Rendering\VAO.h" />
     <ClInclude Include="src\Application\GameLayer\Rendering\VBO.h" />
     <ClInclude Include="src\fileParserResource.cpp" />
@@ -179,6 +183,7 @@
   <ItemGroup>
     <Image Include="resources\images\CatSprite256.png" />
     <Image Include="resources\images\FishSprite256.png" />
+    <Image Include="resources\images\Tilemap1.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

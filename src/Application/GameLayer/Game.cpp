@@ -12,6 +12,9 @@ void Game::Init()
 
 	// ========== Food Object Test
 	m_FoodFirstObject = Food("resources/images/FishSprite256.png");
+
+	// ========== Tilemap Object Test
+	m_TilemapObject = Tilemap("resources/images/Tilemap1.png");
 }
 
 void Game::ProcessKeyEvents(int key, int scancode, int action, int mods)
@@ -48,6 +51,10 @@ void Game::Update(double deltaTime)
 	{ // Update MVP for food
 		m_FoodFirstObject.UpdateObject(m_OrthographicProjection, deltaTime);
 	}
+
+	{
+		m_TilemapObject.UpdateObject(m_OrthographicProjection);
+	}
 }
 
 void Game::Render()
@@ -61,6 +68,10 @@ void Game::Render()
 
 	{
 		m_FoodFirstObject.RenderObject();
+	}
+
+	{
+		m_TilemapObject.RenderObject();
 	}
 }
 
