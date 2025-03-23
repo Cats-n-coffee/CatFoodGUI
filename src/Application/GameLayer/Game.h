@@ -7,6 +7,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/transform.hpp>
 
+#include "Components/Components.h"
+#include "Systems/Render.h"
 #include "GameObjects/Cat.h"
 #include "GameObjects/Food.h"
 #include "GameWorld/Tilemap.h"
@@ -44,4 +46,12 @@ private:
     glm::mat4 m_OrthographicProjection = glm::ortho(
        -1.0f, 1.0f, -1.0f, 1.0f, 0.1f, 100.0f
     );
+
+	// --------- ECS test setup -----------
+	size_t m_NumberOfEntities = 0;
+	size_t AddEntity();
+	void RemoveEntity(size_t entityID);
+
+	Components m_Components;
+	SingleComponents m_SingleComponents;
 };

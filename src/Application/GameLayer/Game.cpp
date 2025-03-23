@@ -15,6 +15,54 @@ void Game::Init()
 
 	// ========== Tilemap Object Test
 	m_TilemapObject = Tilemap("resources/images/Tilemap1.png");
+
+	// ----------- ECS test
+	size_t catID = AddEntity();
+	m_Components.squares.insert(std::pair(
+		catID,
+		Square{
+			-0.25f,
+			0.0f,
+			0.25f,
+			0.25f,
+			0.5f,
+		}
+	));
+	m_Components.sprites.insert(std::pair(
+		catID,
+		Sprite{
+			"resources/images/CatSprite256.png",
+			0,
+			2,
+			2,
+			4,
+		}
+	));
+
+	// OpenGL data for cat
+	m_Components.openGLdatas.insert(std::pair(
+		catID,
+		OpenGLData{
+			{},
+			"resources/shaders/catVertex.shader",
+			"resources/shaders/catFragment.shader",
+			0,
+			0,
+			0,
+			0,
+			0,
+		}
+	));
+
+
+	// need:
+	// render component with all the openGL stuff
+	// system to render everything
+	// Objective 1: render the square
+	// Objecttive 2: update the square with arrow keys
+	// So we also need: MVP as component, input as component?,
+	// update system or a translate system
+	SetupCoordsAndTex(m_Components.openGLdatas, m_Components.squares, m_Components.sprites);
 }
 
 void Game::ProcessKeyEvents(int key, int scancode, int action, int mods)
@@ -62,17 +110,19 @@ void Game::Render()
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	{
-		m_CatObject.RenderObject();
-	}
+	// {
+	// 	m_CatObject.RenderObject();
+	// }
 
-	{
-		m_FoodFirstObject.RenderObject();
-	}
+	// {
+	// 	m_FoodFirstObject.RenderObject();
+	// }
 
-	{
-		m_TilemapObject.RenderObject();
-	}
+	// {
+	// 	m_TilemapObject.RenderObject();
+	// }
+
+	RenderCoordsAndTex(m_Components.openGLdatas, m_SingleComponents);
 }
 
 bool Game::CheckCollisionWithCat(Direction direction)
@@ -127,3 +177,13 @@ bool Game::CheckCollisionWithCat(Direction direction)
 
 	return false;
 }
+
+size_t Game::AddEntity()
+{
+	size_t entityID = m_NumberOfEntities;
+	m_NumberOfEntities++;
+
+	return entityID;
+}
+
+void Game::RemoveEntity(size_t entityID) {};

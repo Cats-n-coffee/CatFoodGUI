@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -148,9 +148,13 @@
     <ClCompile Include="src\Application\GameLayer\GameObjects\Cat.cpp" />
     <ClCompile Include="src\Application\GameLayer\GameObjects\Food.cpp" />
     <ClCompile Include="src\Application\GameLayer\GameWorld\Tilemap.cpp" />
-    <ClCompile Include="src\Application\GameLayer\Networking\SocketClient.cpp" />
+    <ClCompile Include="src\Application\GameLayer\Rendering\ShaderProgram_v2.cpp" />
     <ClCompile Include="src\Application\GameLayer\Rendering\VAO.cpp" />
+    <ClCompile Include="src\Application\GameLayer\Rendering\VAO_v2.cpp" />
     <ClCompile Include="src\Application\GameLayer\Rendering\VBO.cpp" />
+    <ClCompile Include="src\Application\GameLayer\Rendering\VBO_v2.cpp" />
+    <ClCompile Include="src\Application\GameLayer\Systems\GenerateCoordinates.cpp" />
+    <ClCompile Include="src\Application\GameLayer\Systems\Render.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\resourceProcessing\FileParser.cpp" />
     <ClCompile Include="src\resourceProcessing\Texture2DPNG.cpp" />
@@ -165,11 +169,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Application\Application.h" />
+    <ClInclude Include="src\Application\GameLayer\Components\Components.h" />
     <ClInclude Include="src\Application\GameLayer\GameObjects\Food.h" />
     <ClInclude Include="src\Application\GameLayer\GameWorld\Tilemap.h" />
-    <ClInclude Include="src\Application\GameLayer\Networking\SocketClient.h" />
+    <ClInclude Include="src\Application\GameLayer\Rendering\ShaderProgram_v2.h" />
     <ClInclude Include="src\Application\GameLayer\Rendering\VAO.h" />
+    <ClInclude Include="src\Application\GameLayer\Rendering\VAO_v2.h" />
     <ClInclude Include="src\Application\GameLayer\Rendering\VBO.h" />
+    <ClInclude Include="src\Application\GameLayer\Rendering\VBO_v2.h" />
+    <ClInclude Include="src\Application\GameLayer\Systems\GenerateCoordinates.h" />
+    <ClInclude Include="src\Application\GameLayer\Systems\Render.h" />
     <ClInclude Include="src\fileParserResource.cpp" />
     <ClInclude Include="src\fileParserResource.h" />
     <ClInclude Include="src\Application\GameLayer\Game.h" />

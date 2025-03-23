@@ -40,10 +40,22 @@
     <ClCompile Include="src\Application\GameLayer\Rendering\VBO.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Application\GameLayer\Networking\SocketClient.cpp">
+    <ClCompile Include="src\Application\GameLayer\GameWorld\Tilemap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Application\GameLayer\GameWorld\Tilemap.cpp">
+    <ClCompile Include="src\Application\GameLayer\Systems\Render.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Application\GameLayer\Rendering\ShaderProgram_v2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Application\GameLayer\Rendering\VAO_v2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Application\GameLayer\Rendering\VBO_v2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Application\GameLayer\Systems\GenerateCoordinates.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -67,8 +79,13 @@
     <ClInclude Include="src\Application\GameLayer\GameObjects\Food.h" />
     <ClInclude Include="src\Application\GameLayer\Rendering\VAO.h" />
     <ClInclude Include="src\Application\GameLayer\Rendering\VBO.h" />
-    <ClInclude Include="src\Application\GameLayer\Networking\SocketClient.h" />
     <ClInclude Include="src\Application\GameLayer\GameWorld\Tilemap.h" />
+    <ClInclude Include="src\Application\GameLayer\Components\Components.h" />
+    <ClInclude Include="src\Application\GameLayer\Systems\Render.h" />
+    <ClInclude Include="src\Application\GameLayer\Rendering\ShaderProgram_v2.h" />
+    <ClInclude Include="src\Application\GameLayer\Rendering\VAO_v2.h" />
+    <ClInclude Include="src\Application\GameLayer\Rendering\VBO_v2.h" />
+    <ClInclude Include="src\Application\GameLayer\Systems\GenerateCoordinates.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\images\CatSprite256.png" />
